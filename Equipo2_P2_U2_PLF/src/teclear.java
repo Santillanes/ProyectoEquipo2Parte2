@@ -1,5 +1,9 @@
 
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Insets;
 import javax.swing.JOptionPane;
+import javax.swing.border.Border;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,8 +20,47 @@ public class teclear extends javax.swing.JFrame {
     /**
      * Creates new form teclear
      */
+    
+    class RoundedBorder implements Border {
+
+    private int radius;
+
+    RoundedBorder(int radius) {
+        this.radius = radius;
+    }
+
+    public Insets getBorderInsets(Component c) {
+        return new Insets(this.radius + 1, this.radius + 1, this.radius + 2, this.radius);
+    }
+
+    public boolean isBorderOpaque() {
+        return true;
+    }
+
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+        g.drawRoundRect(x, y, width - 1, height - 1, radius, radius);
+    }
+}
+    
     public teclear() {
         initComponents();
+        setSize(1280, 720);
+        this.setLocationRelativeTo(null);
+        
+        btn0.setBorder(new RoundedBorder(30));
+        btn1.setBorder(new RoundedBorder(30));
+        btn2.setBorder(new RoundedBorder(30));
+        btn3.setBorder(new RoundedBorder(30));
+        btn4.setBorder(new RoundedBorder(30));
+        btn5.setBorder(new RoundedBorder(30));
+        btn6.setBorder(new RoundedBorder(30));
+        btn7.setBorder(new RoundedBorder(30));
+        btn8.setBorder(new RoundedBorder(30));
+        btn9.setBorder(new RoundedBorder(30));
+        btnBorrar.setBorder(new RoundedBorder(30));
+        btnContinuar.setBorder(new RoundedBorder(30));
+        btnVolver.setBorder(new RoundedBorder(30));
+        
     }
 
     /**
@@ -44,119 +87,168 @@ public class teclear extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnContinuar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btn8.setFont(new java.awt.Font("Yu Gothic UI", 1, 54)); // NOI18N
+        btn8.setForeground(new java.awt.Color(255, 255, 255));
         btn8.setText("8");
+        btn8.setContentAreaFilled(false);
         btn8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn8ActionPerformed(evt);
             }
         });
-        getContentPane().add(btn8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 79, 100, 100));
+        getContentPane().add(btn8, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 96, 132, 132));
 
+        btn7.setFont(new java.awt.Font("Yu Gothic UI", 1, 54)); // NOI18N
+        btn7.setForeground(new java.awt.Color(255, 255, 255));
         btn7.setText("7");
+        btn7.setContentAreaFilled(false);
         btn7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn7ActionPerformed(evt);
             }
         });
-        getContentPane().add(btn7, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 79, 100, 100));
+        getContentPane().add(btn7, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 96, 132, 132));
 
+        btn9.setFont(new java.awt.Font("Yu Gothic UI", 1, 54)); // NOI18N
+        btn9.setForeground(new java.awt.Color(255, 255, 255));
         btn9.setText("9");
+        btn9.setContentAreaFilled(false);
         btn9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn9ActionPerformed(evt);
             }
         });
-        getContentPane().add(btn9, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 79, 100, 100));
+        getContentPane().add(btn9, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 96, 132, 132));
 
+        btn6.setFont(new java.awt.Font("Yu Gothic UI", 1, 54)); // NOI18N
+        btn6.setForeground(new java.awt.Color(255, 255, 255));
         btn6.setText("6");
+        btn6.setContentAreaFilled(false);
         btn6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn6ActionPerformed(evt);
             }
         });
-        getContentPane().add(btn6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, 100, 100));
+        getContentPane().add(btn6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 241, 132, 132));
 
+        btn5.setFont(new java.awt.Font("Yu Gothic UI", 1, 54)); // NOI18N
+        btn5.setForeground(new java.awt.Color(255, 255, 255));
         btn5.setText("5");
+        btn5.setContentAreaFilled(false);
         btn5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn5ActionPerformed(evt);
             }
         });
-        getContentPane().add(btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 100, 100));
+        getContentPane().add(btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 241, 132, 132));
 
+        btn4.setFont(new java.awt.Font("Yu Gothic UI", 1, 54)); // NOI18N
+        btn4.setForeground(new java.awt.Color(255, 255, 255));
         btn4.setText("4");
+        btn4.setContentAreaFilled(false);
         btn4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn4ActionPerformed(evt);
             }
         });
-        getContentPane().add(btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 100, 100));
+        getContentPane().add(btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 241, 132, 132));
 
+        btn3.setFont(new java.awt.Font("Yu Gothic UI", 1, 54)); // NOI18N
+        btn3.setForeground(new java.awt.Color(255, 255, 255));
         btn3.setText("3");
+        btn3.setContentAreaFilled(false);
         btn3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn3ActionPerformed(evt);
             }
         });
-        getContentPane().add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 100, 100));
+        getContentPane().add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 385, 132, 132));
 
+        btn2.setFont(new java.awt.Font("Yu Gothic UI", 1, 54)); // NOI18N
+        btn2.setForeground(new java.awt.Color(255, 255, 255));
         btn2.setText("2");
+        btn2.setContentAreaFilled(false);
         btn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn2ActionPerformed(evt);
             }
         });
-        getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 100, 100));
+        getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 385, 132, 132));
 
+        btn1.setFont(new java.awt.Font("Yu Gothic UI", 1, 54)); // NOI18N
+        btn1.setForeground(new java.awt.Color(255, 255, 255));
         btn1.setText("1");
+        btn1.setContentAreaFilled(false);
         btn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 100, 100));
+        getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 385, 132, 132));
 
-        btnBorrar.setText("Borrar");
+        btnBorrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
+        btnBorrar.setContentAreaFilled(false);
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBorrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 453, 172, 51));
+        getContentPane().add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(441, 529, 132, 96));
 
+        btn0.setFont(new java.awt.Font("Yu Gothic UI", 1, 54)); // NOI18N
+        btn0.setForeground(new java.awt.Color(255, 255, 255));
         btn0.setText("0");
+        btn0.setContentAreaFilled(false);
+        btn0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn0ActionPerformed(evt);
             }
         });
-        getContentPane().add(btn0, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 453, 169, 51));
+        getContentPane().add(btn0, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 530, 277, 96));
 
         txtCodigo.setEditable(false);
-        getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(613, 153, 408, 83));
+        txtCodigo.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
+        txtCodigo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 269, 460, 70));
 
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 39)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("¡Inserte su código!");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(758, 106, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(772, 165, 350, 51));
 
+        btnContinuar.setFont(new java.awt.Font("Yu Gothic UI", 1, 20)); // NOI18N
+        btnContinuar.setForeground(new java.awt.Color(255, 255, 255));
         btnContinuar.setText("Continuar");
+        btnContinuar.setContentAreaFilled(false);
         btnContinuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnContinuarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 310, -1, -1));
+        getContentPane().add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(843, 416, 216, 46));
 
+        btnVolver.setFont(new java.awt.Font("Yu Gothic UI", 1, 20)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("Volver");
+        btnVolver.setContentAreaFilled(false);
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(759, 374, -1, -1));
+        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(871, 492, 160, 47));
+
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondo 1280x720 2.0.png"))); // NOI18N
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -290,6 +382,7 @@ public class teclear extends javax.swing.JFrame {
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnContinuar;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JLabel fondo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables

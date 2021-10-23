@@ -1,3 +1,9 @@
+
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Insets;
+import javax.swing.border.Border;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,13 +14,48 @@
  *
  * @author Santillanes
  */
+
+
+    
 public class menu extends javax.swing.JFrame {
 
     /**
      * Creates new form manu
      */
+    
+    class RoundedBorder implements Border {
+
+    private int radius;
+
+    RoundedBorder(int radius) {
+        this.radius = radius;
+    }
+
+    public Insets getBorderInsets(Component c) {
+        return new Insets(this.radius + 1, this.radius + 1, this.radius + 2, this.radius);
+    }
+
+    public boolean isBorderOpaque() {
+        return true;
+    }
+
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+        g.drawRoundRect(x, y, width - 1, height - 1, radius, radius);
+    }
+}
+    
     public menu() {
         initComponents();
+        
+        setSize(1280, 720);
+        this.setLocationRelativeTo(null);
+        
+        btnEscanear.setBorder(new RoundedBorder(30));
+        btnSalir.setBorder(new RoundedBorder(30));
+        btnVisita.setBorder(new RoundedBorder(30));
+        btnServicios.setBorder(new RoundedBorder(30));
+        
+        
     }
 
     /**
@@ -26,70 +67,103 @@ public class menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
         btnVisita = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         btnServicios = new javax.swing.JButton();
         btnEscanear = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
+        fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(null);
 
-        btnVisita.setText("Reg visita sin qr");
+        jLabel3.setFont(new java.awt.Font("Yu Gothic UI", 1, 22)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("de Servicios");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(927, 450, 130, 30);
+
+        btnVisita.setFont(new java.awt.Font("Yu Gothic UI", 1, 22)); // NOI18N
+        btnVisita.setForeground(new java.awt.Color(255, 255, 255));
+        btnVisita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/registro.png"))); // NOI18N
+        btnVisita.setText("Registro Visitantes");
+        btnVisita.setContentAreaFilled(false);
+        btnVisita.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnVisita.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnVisita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVisitaActionPerformed(evt);
             }
         });
+        getContentPane().add(btnVisita);
+        btnVisita.setBounds(516, 247, 249, 249);
 
-        btnServicios.setText("Reg serivicos");
+        jLabel2.setFont(new java.awt.Font("Yu Gothic UI", 1, 22)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("sin QR");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(540, 450, 202, 30);
+
+        btnServicios.setFont(new java.awt.Font("Yu Gothic UI", 1, 22)); // NOI18N
+        btnServicios.setForeground(new java.awt.Color(255, 255, 255));
+        btnServicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/registro.png"))); // NOI18N
+        btnServicios.setText("Registro");
+        btnServicios.setContentAreaFilled(false);
+        btnServicios.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnServicios.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnServicios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnServiciosActionPerformed(evt);
             }
         });
+        getContentPane().add(btnServicios);
+        btnServicios.setBounds(865, 247, 249, 249);
 
-        btnEscanear.setText("Escaner y tecleo");
+        btnEscanear.setBackground(new java.awt.Color(255, 255, 255));
+        btnEscanear.setFont(new java.awt.Font("Yu Gothic UI", 1, 22)); // NOI18N
+        btnEscanear.setForeground(new java.awt.Color(255, 255, 255));
+        btnEscanear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/qr2.0.png"))); // NOI18N
+        btnEscanear.setText("Escanear QR o");
+        btnEscanear.setContentAreaFilled(false);
+        btnEscanear.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEscanear.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnEscanear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEscanearActionPerformed(evt);
             }
         });
+        getContentPane().add(btnEscanear);
+        btnEscanear.setBounds(167, 247, 249, 249);
 
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 22)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Teclear Código");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(211, 450, 162, 30);
+
+        btnSalir.setFont(new java.awt.Font("Yu Gothic UI", 1, 20)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(255, 255, 255));
         btnSalir.setText("Salir");
+        btnSalir.setContentAreaFilled(false);
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
             }
         });
+        getContentPane().add(btnSalir);
+        btnSalir.setBounds(546, 583, 160, 46);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(212, 212, 212)
-                .addComponent(btnEscanear, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82)
-                .addComponent(btnVisita, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72)
-                .addComponent(btnServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(269, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalir)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnSalir)
-                .addGap(177, 177, 177)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVisita, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEscanear, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(237, Short.MAX_VALUE))
-        );
+        fondo.setForeground(new java.awt.Color(255, 255, 255));
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondo 1280x720 2.0.png"))); // NOI18N
+        getContentPane().add(fondo);
+        fondo.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -163,5 +237,9 @@ public class menu extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnServicios;
     private javax.swing.JButton btnVisita;
+    private javax.swing.JLabel fondo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

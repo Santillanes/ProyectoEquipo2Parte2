@@ -1,5 +1,9 @@
 
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Insets;
 import javax.swing.JOptionPane;
+import javax.swing.border.Border;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,14 +20,44 @@ public class opcion3 extends javax.swing.JFrame {
     /**
      * Creates new form opcion3
      */
+    
+    class RoundedBorder implements Border {
+
+    private int radius;
+
+    RoundedBorder(int radius) {
+        this.radius = radius;
+    }
+
+    public Insets getBorderInsets(Component c) {
+        return new Insets(this.radius + 1, this.radius + 1, this.radius + 2, this.radius);
+    }
+
+    public boolean isBorderOpaque() {
+        return true;
+    }
+
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+        g.drawRoundRect(x, y, width - 1, height - 1, radius, radius);
+    }
+}
+    
     public opcion3() {
         initComponents();
+        
+        setSize(1280, 720);
+        this.setLocationRelativeTo(null);
+        
         cmbServicios.addItem("Selecciona el servicio...");
         cmbServicios.addItem("Servicios básicos (JMAS, CFE, ECOGAS)");
         cmbServicios.addItem("Servicios de telecomunicaciones (Telmex, IZZI, Sky, TotalPlay)");
         cmbServicios.addItem("Paquetería");
         cmbServicios.addItem("Serivicio de transporte (Uber, DiDi, InDriver, Taxi)");
         cmbServicios.addItem("Reparto de alimentos (UberEats, DiDi Food, Rappi, Repartidores particulares)");
+        
+        btnContinuar.setBorder(new RoundedBorder(30));
+        btnVolver.setBorder(new RoundedBorder(30));
+        
     }
 
     /**
@@ -40,63 +74,54 @@ public class opcion3 extends javax.swing.JFrame {
         cmbServicios = new javax.swing.JComboBox<>();
         btnContinuar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(null);
 
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 38)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Registro de servicios");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(437, 70, 388, 49);
 
+        jLabel2.setFont(new java.awt.Font("Yu Gothic UI", 1, 26)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Servicio");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(209, 243, 101, 34);
 
+        getContentPane().add(cmbServicios);
+        cmbServicios.setBounds(209, 288, 860, 48);
+
+        btnContinuar.setFont(new java.awt.Font("Yu Gothic UI", 1, 20)); // NOI18N
+        btnContinuar.setForeground(new java.awt.Color(255, 255, 255));
         btnContinuar.setText("Continuar");
+        btnContinuar.setContentAreaFilled(false);
         btnContinuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnContinuarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnContinuar);
+        btnContinuar.setBounds(532, 504, 215, 46);
 
+        btnVolver.setFont(new java.awt.Font("Yu Gothic UI", 1, 20)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("Volver");
+        btnVolver.setContentAreaFilled(false);
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
             }
         });
+        getContentPane().add(btnVolver);
+        btnVolver.setBounds(560, 580, 161, 47);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(432, 432, 432)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(cmbServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(456, 456, 456)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnVolver)
-                            .addComponent(btnContinuar))))
-                .addContainerGap(290, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jLabel1)
-                .addGap(103, 103, 103)
-                .addComponent(jLabel2)
-                .addGap(26, 26, 26)
-                .addComponent(cmbServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(123, 123, 123)
-                .addComponent(btnContinuar)
-                .addGap(56, 56, 56)
-                .addComponent(btnVolver)
-                .addContainerGap(118, Short.MAX_VALUE))
-        );
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondo 1280x720 2.0.png"))); // NOI18N
+        getContentPane().add(fondo);
+        fondo.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -158,6 +183,7 @@ public class opcion3 extends javax.swing.JFrame {
     private javax.swing.JButton btnContinuar;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<String> cmbServicios;
+    private javax.swing.JLabel fondo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

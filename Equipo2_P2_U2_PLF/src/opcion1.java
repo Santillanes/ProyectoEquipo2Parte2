@@ -1,3 +1,9 @@
+
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Insets;
+import javax.swing.border.Border;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,8 +19,38 @@ public class opcion1 extends javax.swing.JFrame {
     /**
      * Creates new form opcion1
      */
+    
+    
+    class RoundedBorder implements Border {
+
+    private int radius;
+
+    RoundedBorder(int radius) {
+        this.radius = radius;
+    }
+
+    public Insets getBorderInsets(Component c) {
+        return new Insets(this.radius + 1, this.radius + 1, this.radius + 2, this.radius);
+    }
+
+    public boolean isBorderOpaque() {
+        return true;
+    }
+
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+        g.drawRoundRect(x, y, width - 1, height - 1, radius, radius);
+    }
+}
+    
     public opcion1() {
         initComponents();
+        setSize(1280, 720);
+        this.setLocationRelativeTo(null);
+        
+        btnEscanear.setBorder(new RoundedBorder(30));
+        btnTeclear.setBorder(new RoundedBorder(30));
+        btnVolver.setBorder(new RoundedBorder(30));
+        
     }
 
     /**
@@ -30,64 +66,65 @@ public class opcion1 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnTeclear = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(null);
 
+        btnEscanear.setFont(new java.awt.Font("Yu Gothic UI", 1, 29)); // NOI18N
+        btnEscanear.setForeground(new java.awt.Color(255, 255, 255));
+        btnEscanear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/qr2.0.png"))); // NOI18N
         btnEscanear.setText("Escanear QR");
+        btnEscanear.setContentAreaFilled(false);
+        btnEscanear.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEscanear.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnEscanear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEscanearActionPerformed(evt);
             }
         });
+        getContentPane().add(btnEscanear);
+        btnEscanear.setBounds(350, 217, 240, 241);
 
-        jLabel1.setText("Selecciona la opción de su convenencia");
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 38)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Seleccione la opción de su convenencia");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(267, 79, 746, 49);
 
+        btnTeclear.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
+        btnTeclear.setForeground(new java.awt.Color(255, 255, 255));
+        btnTeclear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pin.png"))); // NOI18N
         btnTeclear.setText("Teclear código");
+        btnTeclear.setContentAreaFilled(false);
+        btnTeclear.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnTeclear.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnTeclear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTeclearActionPerformed(evt);
             }
         });
+        getContentPane().add(btnTeclear);
+        btnTeclear.setBounds(691, 217, 240, 240);
 
+        btnVolver.setFont(new java.awt.Font("Yu Gothic UI", 1, 22)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("Volver");
+        btnVolver.setContentAreaFilled(false);
+        btnVolver.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
             }
         });
+        getContentPane().add(btnVolver);
+        btnVolver.setBounds(604, 563, 110, 28);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(209, 209, 209)
-                        .addComponent(btnEscanear, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(277, 277, 277)
-                        .addComponent(btnTeclear, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(395, 395, 395)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(477, 477, 477)
-                        .addComponent(btnVolver)))
-                .addContainerGap(302, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(jLabel1)
-                .addGap(96, 96, 96)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEscanear, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTeclear, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
-                .addComponent(btnVolver)
-                .addGap(132, 132, 132))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondo 1280x720 3.0.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -153,5 +190,6 @@ public class opcion1 extends javax.swing.JFrame {
     private javax.swing.JButton btnTeclear;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

@@ -15,6 +15,10 @@ public class inicio extends javax.swing.JFrame {
      */
     public inicio() {
         initComponents();
+        
+        setSize(1280, 720);
+        this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -28,51 +32,55 @@ public class inicio extends javax.swing.JFrame {
 
         lblLogo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1280, 720));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
             }
         });
+        getContentPane().setLayout(null);
 
-        lblLogo.setText("Logo");
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/LOGO SOLITARIO.png"))); // NOI18N
         lblLogo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblLogoMouseClicked(evt);
             }
         });
+        getContentPane().add(lblLogo);
+        lblLogo.setBounds(545, 118, 190, 190);
 
-        jLabel1.setText("¡Toca la pantalla para iniciar!");
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 52)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("PARA INCIAR!");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
             }
         });
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(467, 465, 346, 69);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(416, 416, 416)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(398, 398, 398)
-                        .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(521, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
-                .addComponent(jLabel1)
-                .addContainerGap(254, Short.MAX_VALUE))
-        );
+        jLabel2.setFont(new java.awt.Font("Yu Gothic UI", 1, 52)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("¡TOCA LA PANTALLA");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(395, 386, 510, 69);
+
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondo 1280x720.png"))); // NOI18N
+        getContentPane().add(fondo);
+        fondo.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -84,19 +92,23 @@ public class inicio extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_formMouseClicked
 
-    private void lblLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoMouseClicked
-        // TODO add your handling code here:
-        menu nF = new menu();
-        nF.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_lblLogoMouseClicked
-
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
         menu nF = new menu();
         nF.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void lblLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoMouseClicked
+        // TODO add your handling code here:
+        menu nF = new menu();
+        nF.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblLogoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -134,7 +146,9 @@ public class inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel fondo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblLogo;
     // End of variables declaration//GEN-END:variables
 }
