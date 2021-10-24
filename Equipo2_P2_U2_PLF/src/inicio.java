@@ -101,6 +101,9 @@ public class inicio extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
+        menu nF = new menu();
+        nF.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void lblLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoMouseClicked

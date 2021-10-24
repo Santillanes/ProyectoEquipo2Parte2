@@ -1,7 +1,24 @@
 
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.ChecksumException;
+import com.google.zxing.FormatException;
+import com.google.zxing.LuminanceSource;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.Result;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import com.google.zxing.common.HybridBinarizer;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Insets;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.Scanner;
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
 import javax.swing.border.Border;
 
 /*
@@ -62,8 +79,7 @@ public class escanearQR extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         btnVolver = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        btnEscaner = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -90,28 +106,14 @@ public class escanearQR extends javax.swing.JFrame {
         getContentPane().add(btnVolver);
         btnVolver.setBounds(581, 595, 130, 40);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Contorno QR.png"))); // NOI18N
-        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addContainerGap())
-        );
-
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(497, 196, 290, 290);
+        btnEscaner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/EscanerQR.png"))); // NOI18N
+        btnEscaner.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEscanerActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEscaner);
+        btnEscaner.setBounds(500, 210, 290, 290);
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondo 1280x720 2.0.png"))); // NOI18N
         getContentPane().add(fondo);
@@ -126,6 +128,40 @@ public class escanearQR extends javax.swing.JFrame {
         nF.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnEscanerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscanerActionPerformed
+        // TODO add your handling code here:
+        
+        
+        JFileChooser fileChooser = new JFileChooser("C:\\Users\\Santillanes\\Desktop\\Prog lógica y funcional\\Equipo2_P1_U2_PLF\\Images");
+        fileChooser.showOpenDialog(fileChooser);
+        
+         try {
+            String ruta = fileChooser.getSelectedFile().getAbsolutePath();                                        
+            File f = new File(ruta);
+            
+            com.google.zxing.Reader lector = new MultiFormatReader();
+            File ubicacionImagen = new File(ruta);
+            BufferedImage imagen;
+            
+            if (ubicacionImagen.exists()){
+                //imagen = ImageIO.read(ubicacionImagen);
+                //LuminanceSource fuente = new BufferedImageLuminanceSource(imagen);
+                //BinaryBitmap mapaBits = new BinaryBitmap(new HybridBinarizer(fuente));
+                //Result resultado = lector.decode(mapaBits);
+                //System.out.println("Detalle del codigo = "+resultado.getText());
+                
+                qrExito nF = new qrExito();
+                nF.setVisible(true);
+                this.dispose();
+                
+            }
+            
+        } catch (NullPointerException e) {
+            System.out.println("No se ha seleccionado ningún fichero");
+        }
+        
+    }//GEN-LAST:event_btnEscanerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,10 +199,9 @@ public class escanearQR extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEscaner;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

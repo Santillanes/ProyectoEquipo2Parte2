@@ -2,6 +2,13 @@
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Insets;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.border.Border;
 
 /*
@@ -59,9 +66,8 @@ public class opcion2 extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        btnEscaner = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -74,6 +80,15 @@ public class opcion2 extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(243, 65, 754, 49);
 
+        btnEscaner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/EscanerID.png"))); // NOI18N
+        btnEscaner.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEscanerActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEscaner);
+        btnEscaner.setBounds(370, 210, 520, 320);
+
         btnVolver.setFont(new java.awt.Font("Yu Gothic UI", 1, 20)); // NOI18N
         btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("Volver");
@@ -85,24 +100,6 @@ public class opcion2 extends javax.swing.JFrame {
         });
         getContentPane().add(btnVolver);
         btnVolver.setBounds(560, 617, 160, 46);
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/id.png"))); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(389, 218, 507, 306);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 520, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(390, 210, 520, 320);
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondo 1280x720 2.0.png"))); // NOI18N
         getContentPane().add(fondo);
@@ -118,6 +115,30 @@ public class opcion2 extends javax.swing.JFrame {
         this.dispose();
 
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnEscanerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscanerActionPerformed
+        // TODO add your handling code here:
+        
+        JFileChooser fileChooser = new JFileChooser("C:\\Users\\Santillanes\\Desktop\\Prog lógica y funcional\\ProyectoEquipo2Parte2\\Equipo2_P2_U2_PLF\\IDs");
+        fileChooser.showOpenDialog(fileChooser);
+        
+        String ruta = fileChooser.getSelectedFile().getAbsolutePath();
+        
+        try {
+            ObjectInputStream tra = new ObjectInputStream(new FileInputStream(ruta));
+            String nombre = tra.readObject().toString();
+            registroVisitante nF = new registroVisitante(nombre);
+            nF.setVisible(true);
+            this.dispose();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(opcion2.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(opcion2.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(opcion2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnEscanerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,10 +176,9 @@ public class opcion2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEscaner;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

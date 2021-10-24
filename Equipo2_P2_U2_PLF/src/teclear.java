@@ -2,6 +2,9 @@
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Insets;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.File;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 
@@ -60,6 +63,8 @@ public class teclear extends javax.swing.JFrame {
         btnBorrar.setBorder(new RoundedBorder(30));
         btnContinuar.setBorder(new RoundedBorder(30));
         btnVolver.setBorder(new RoundedBorder(30));
+        
+        
         
     }
 
@@ -260,54 +265,60 @@ public class teclear extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    public void establecerNum(int num){
+        if (txtCodigo.getText().length() < 10) {
+            txtCodigo.setText(txtCodigo.getText()+num);
+        }
+    }
+    
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
         // TODO add your handling code here:
-        txtCodigo.setText(txtCodigo.getText()+"7");
+        establecerNum(7);
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
         // TODO add your handling code here:
-        txtCodigo.setText(txtCodigo.getText()+"8");
+        establecerNum(8);
     }//GEN-LAST:event_btn8ActionPerformed
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
         // TODO add your handling code here:
-        txtCodigo.setText(txtCodigo.getText()+"9");
+        establecerNum(9);
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         // TODO add your handling code here:
-        txtCodigo.setText(txtCodigo.getText()+"4");
+        establecerNum(4);
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
         // TODO add your handling code here:
-        txtCodigo.setText(txtCodigo.getText()+"5");
+        establecerNum(5);
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
         // TODO add your handling code here:
-        txtCodigo.setText(txtCodigo.getText()+"6");
+        establecerNum(6);
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         // TODO add your handling code here:
-        txtCodigo.setText(txtCodigo.getText()+"1");
+        establecerNum(1);
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         // TODO add your handling code here:
-        txtCodigo.setText(txtCodigo.getText()+"2");
+        establecerNum(2);
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         // TODO add your handling code here:
-        txtCodigo.setText(txtCodigo.getText()+"3");
+        establecerNum(3);
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
         // TODO add your handling code here:
-        txtCodigo.setText(txtCodigo.getText()+"0");
+        establecerNum(0);
     }//GEN-LAST:event_btn0ActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
@@ -322,13 +333,25 @@ public class teclear extends javax.swing.JFrame {
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         
-        if (txtCodigo.getText().equals("123123")) {
-            qrExito nF = new qrExito();
-            nF.setVisible(true);
-            this.dispose();
+        if (txtCodigo.getText().length() != 10) {
+            JOptionPane.showMessageDialog(null, "El código debe ser de 10 dígitos.");
         }else{
-            JOptionPane.showMessageDialog(null, "El código no es correcto. \nIntente nuevamente.");
-            txtCodigo.setText("");
+            String code = txtCodigo.getText();
+            boolean ban = false;
+            File car = new File("C:\\Users\\Santillanes\\Desktop\\Prog lógica y funcional\\Equipo2_P1_U2_PLF\\Images\\CarlosR_"+code+".png");
+            File rob = new File("C:\\Users\\Santillanes\\Desktop\\Prog lógica y funcional\\Equipo2_P1_U2_PLF\\Images\\Robert_"+code+".png");
+            File san = new File("C:\\Users\\Santillanes\\Desktop\\Prog lógica y funcional\\Equipo2_P1_U2_PLF\\Images\\Santillanes2301_"+code+".png");
+            
+            if (car.exists() || rob.exists() || san.exists())   ban = true;
+            
+            if (ban) {
+                qrExito nF = new qrExito();
+                nF.setVisible(true);
+                this.dispose(); 
+            }else{
+                JOptionPane.showMessageDialog(null, "El código es incorrecto.");
+                txtCodigo.setText("");
+            }
         }
         
     }//GEN-LAST:event_btnContinuarActionPerformed
