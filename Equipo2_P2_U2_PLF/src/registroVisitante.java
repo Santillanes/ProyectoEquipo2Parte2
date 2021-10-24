@@ -168,7 +168,14 @@ public class registroVisitante extends javax.swing.JFrame {
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         // TODO add your handling code here:
-        
+        String otro = "vacio";
+        if (cmbParentesco.getSelectedItem() == "Otro") {
+            otro = JOptionPane.showInputDialog("¿Qué eres del residente?");
+            if (otro.length() != 0){
+                cmbParentesco.addItem(otro);
+                cmbParentesco.setSelectedItem(otro);
+            }
+        }
         if (cmbParentesco.getSelectedItem() != "Elige..." && cmbDomicilio.getSelectedItem() != "Elige..." && !"".equals(txtNumero.getText())) {
             exitoServicios nF = new exitoServicios();
             nF.setVisible(true);
