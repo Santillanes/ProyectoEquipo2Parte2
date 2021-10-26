@@ -120,7 +120,7 @@ public class opcion1 extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVolver);
-        btnVolver.setBounds(604, 563, 110, 28);
+        btnVolver.setBounds(560, 560, 190, 28);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondo 1280x720 3.0.png"))); // NOI18N
         getContentPane().add(jLabel2);

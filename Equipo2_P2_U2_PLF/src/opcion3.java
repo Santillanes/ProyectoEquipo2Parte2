@@ -2,7 +2,11 @@
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Insets;
+import java.awt.Shape;
+import java.awt.geom.RoundRectangle2D;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 /*
@@ -20,6 +24,34 @@ public class opcion3 extends javax.swing.JFrame {
     /**
      * Creates new form opcion3
      */
+    
+    class RoundJTextField extends JTextField {
+
+    private Shape shape;
+
+    public RoundJTextField(int size) {
+        super(size);
+        setOpaque(false); // As suggested by @AVD in comment.
+    }
+
+    protected void paintComponent(Graphics g) {
+        g.setColor(getBackground());
+        g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);
+        super.paintComponent(g);
+    }
+
+    protected void paintBorder(Graphics g) {
+        g.setColor(getForeground());
+        g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);
+    }
+
+    public boolean contains(int x, int y) {
+        if (shape == null || !shape.getBounds().equals(getBounds())) {
+            shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);
+        }
+        return shape.contains(x, y);
+    }
+}
     
     class RoundedBorder implements Border {
 
@@ -42,8 +74,10 @@ public class opcion3 extends javax.swing.JFrame {
     }
 }
     
+    
     public opcion3() {
         initComponents();
+        
         
         setSize(1280, 720);
         this.setLocationRelativeTo(null);
@@ -70,6 +104,8 @@ public class opcion3 extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cmbServicios = new javax.swing.JComboBox<>();
         btnContinuar = new javax.swing.JButton();
@@ -85,6 +121,14 @@ public class opcion3 extends javax.swing.JFrame {
         jLabel1.setText("Registro de servicios");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(437, 70, 388, 49);
+        getContentPane().add(txtID);
+        txtID.setBounds(210, 390, 860, 50);
+
+        jLabel3.setFont(new java.awt.Font("Yu Gothic UI", 1, 26)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Número de identificación");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(210, 350, 330, 34);
 
         jLabel2.setFont(new java.awt.Font("Yu Gothic UI", 1, 26)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -135,12 +179,21 @@ public class opcion3 extends javax.swing.JFrame {
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         // TODO add your handling code here:
-        if (cmbServicios.getSelectedItem().equals("Selecciona el servicio...")) {
+        /*if (cmbServicios.getSelectedItem().equals("Selecciona el servicio...")) {
             JOptionPane.showMessageDialog(null, "Elige un servicio.");
         }else{
             exitoServicios nF = new exitoServicios();
             nF.setVisible(true);
             this.dispose();
+        }*/
+        
+        
+        if (!(cmbServicios.getSelectedItem().equals("Selecciona el servicio...")) && !txtID.getText().equals("")) {
+            exitoServicios nF = new exitoServicios();
+            nF.setVisible(true);
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Favor de llenar todos los campos.");
         }
     }//GEN-LAST:event_btnContinuarActionPerformed
 
@@ -186,5 +239,7 @@ public class opcion3 extends javax.swing.JFrame {
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JTextField txtID;
     // End of variables declaration//GEN-END:variables
 }

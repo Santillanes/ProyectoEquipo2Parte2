@@ -1,5 +1,13 @@
 
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Insets;
+import java.awt.Shape;
+import java.awt.geom.RoundRectangle2D;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,10 +24,84 @@ public class registroVisitante extends javax.swing.JFrame {
      * Creates new form registroVisitante
      * @param nombre
      */
+    
+    class RoundJTextField extends JTextField {
+
+    private Shape shape;
+
+    public RoundJTextField(int size) {
+        super(size);
+        setOpaque(false); // As suggested by @AVD in comment.
+    }
+
+    protected void paintComponent(Graphics g) {
+        g.setColor(getBackground());
+        g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);
+        super.paintComponent(g);
+    }
+
+    protected void paintBorder(Graphics g) {
+        g.setColor(getForeground());
+        g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);
+    }
+
+    public boolean contains(int x, int y) {
+        if (shape == null || !shape.getBounds().equals(getBounds())) {
+            shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);
+        }
+        return shape.contains(x, y);
+    }
+}
+    
+    class RoundedBorder implements Border {
+
+    private int radius;
+
+    RoundedBorder(int radius) {
+        this.radius = radius;
+    }
+
+    public Insets getBorderInsets(Component c) {
+        return new Insets(this.radius + 1, this.radius + 1, this.radius + 2, this.radius);
+    }
+
+    public boolean isBorderOpaque() {
+        return true;
+    }
+
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+        g.drawRoundRect(x, y, width - 1, height - 1, radius, radius);
+    }
+}
+    
+    JTextField txtNombre = new RoundJTextField(15);
+    JTextField txtNumero = new RoundJTextField(15);
+    
+    
     public registroVisitante(String nombre) {
         initComponents();
+        
+        btnContinuar.setBorder(new RoundedBorder(30));
+        btnSalir.setBorder(new RoundedBorder(30));
+        
+        setSize(1280, 720);
+        this.setLocationRelativeTo(null);
+        
+        jPanel1.add(txtNombre);
+        jPanel1.add(txtNumero);
+        
+        txtNombre.setVisible(true);
+        txtNombre.setBounds(101, 230, 649, 47);
+        
+        txtNumero.setVisible(true);
+        txtNumero.setBounds(796, 371, 383, 47);
+        
         txtNombre.setText(nombre);
         txtNombre.setEditable(false);
+        
+        Font fuente = new Font("Tahoma", 0, 22);
+        txtNombre.setFont(fuente);
+        txtNumero.setFont(fuente);
         
         cmbParentesco.addItem("Elige...");
         cmbParentesco.addItem("Hijo");
@@ -53,108 +135,96 @@ public class registroVisitante extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtNumero = new javax.swing.JTextField();
         cmbDomicilio = new javax.swing.JComboBox<>();
         cmbParentesco = new javax.swing.JComboBox<>();
         btnContinuar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(null);
 
+        jPanel1.setOpaque(false);
+        jPanel1.setLayout(null);
+
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 39)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Registro de Datos del Visitante");
+        jLabel1.setFocusable(false);
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(338, 69, 588, 51);
 
+        jLabel2.setFont(new java.awt.Font("Yu Gothic UI", 1, 26)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(101, 185, 120, 32);
 
+        jLabel3.setFont(new java.awt.Font("Yu Gothic UI", 1, 26)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Parentesco");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(796, 185, 143, 34);
 
+        jLabel4.setFont(new java.awt.Font("Yu Gothic UI", 1, 26)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Domicilio al que se dirige");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(108, 326, 319, 34);
 
+        jLabel5.setFont(new java.awt.Font("Yu Gothic UI", 1, 26)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Número de casa");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(796, 324, 193, 36);
 
+        cmbDomicilio.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+        jPanel1.add(cmbDomicilio);
+        cmbDomicilio.setBounds(108, 371, 647, 47);
+
+        cmbParentesco.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+        jPanel1.add(cmbParentesco);
+        cmbParentesco.setBounds(796, 230, 383, 47);
+
+        btnContinuar.setFont(new java.awt.Font("Yu Gothic UI", 1, 20)); // NOI18N
+        btnContinuar.setForeground(new java.awt.Color(255, 255, 255));
         btnContinuar.setText("Continuar");
+        btnContinuar.setContentAreaFilled(false);
         btnContinuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnContinuarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnContinuar);
+        btnContinuar.setBounds(533, 543, 214, 47);
 
+        btnSalir.setFont(new java.awt.Font("Yu Gothic UI", 1, 20)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(255, 255, 255));
         btnSalir.setText("Salir");
+        btnSalir.setContentAreaFilled(false);
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
             }
         });
+        jPanel1.add(btnSalir);
+        btnSalir.setBounds(560, 620, 160, 47);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(545, 545, 545)
-                .addComponent(jLabel1))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addComponent(jLabel2)
-                .addGap(614, 614, 614)
-                .addComponent(jLabel3))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(172, 172, 172)
-                .addComponent(cmbParentesco, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addComponent(jLabel4)
-                .addGap(536, 536, 536)
-                .addComponent(jLabel5))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(cmbDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(184, 184, 184)
-                .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(590, 590, 590)
-                .addComponent(btnContinuar))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(600, 600, 600)
-                .addComponent(btnSalir))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(105, 105, 105)
-                .addComponent(jLabel1)
-                .addGap(77, 77, 77)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cmbParentesco, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(128, 128, 128)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(137, 137, 137)
-                .addComponent(btnContinuar)
-                .addGap(37, 37, 37)
-                .addComponent(btnSalir))
-        );
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 1280, 720);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondo 1280x720 2.0.png"))); // NOI18N
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -231,7 +301,7 @@ public class registroVisitante extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtNumero;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
